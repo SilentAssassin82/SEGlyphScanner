@@ -1,0 +1,18 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Generated scanner output (written to the SE fonts directory at runtime)
+glyph_report.txt
+glyph_browser_pb.cs
+
+# OS
+Thumbs.db
+Desktop.ini
