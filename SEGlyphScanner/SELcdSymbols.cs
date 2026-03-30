@@ -34,6 +34,26 @@ namespace SEGlyphScanner
         // E001–E04F: HUD / chevron icons in White font (forcewhite, aw ≈ 60–64)
         // E050–E058: smaller arrow glyphs also present in Monospace font
 
+        // ── Inline colour tags (all fonts) ───────────────────────────────────────
+        // SE LCD renderer supports <color=R,G,B> markup inline in text strings.
+        // The tag applies from its position forward until the next tag.
+        // Works on both White and Monospace fonts; tintable glyphs pick up the active tag colour.
+        // To restore the LCD's FontColor, emit Tag(lcd.FontColor.R, lcd.FontColor.G, lcd.FontColor.B).
+
+        /// <summary>Returns an inline colour tag string: <c>&lt;color=R,G,B&gt;</c>.</summary>
+        public static string Tag(byte r, byte g, byte b)
+        {
+            return "<color=" + r + "," + g + "," + b + ">";
+        }
+
+        /// <summary>Resets inline colour to white (255,255,255).</summary>
+        public const string TagWhite = "<color=255,255,255>";
+
+        // ── Universal spacers (all fonts) ────────────────────────────────────────
+        // U+3000 Ideographic Space — CJK full-width blank, wider than ASCII space.
+        // Works in both White and Monospace font; confirmed blank on all font/colour combos.
+        public const char IdeographicSpace = '\u3000';
+
         // ── Precision spacers (Monospace font ONLY) ──────────────────────────────
         // Invisible glyphs with fixed advance widths of 0, 1, 3, 7, 15, 31, 63, 127, 255 px.
         // Combine them (greedy / binary decomposition) for any pixel offset 0–∞.

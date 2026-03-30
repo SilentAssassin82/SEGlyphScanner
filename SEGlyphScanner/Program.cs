@@ -446,8 +446,9 @@ namespace SEGlyphScanner
             sb.AppendLine("private string BuildBody()");
             sb.AppendLine("{");
             sb.AppendLine("    var text = new System.Text.StringBuilder();");
+            sb.AppendLine("    int endCp = Math.Min(_startCp + COLS * ROWS - 1, 0xFFFF);");
             sb.AppendLine("    text.AppendLine(\"U+\" + _startCp.ToString(\"X4\")");
-            sb.AppendLine("                  + \" .. U+\" + (_startCp + COLS * ROWS - 1).ToString(\"X4\"));");
+            sb.AppendLine("                  + \" .. U+\" + endCp.ToString(\"X4\"));");
             sb.AppendLine("    text.AppendLine();");
             sb.AppendLine();
             sb.AppendLine("    for (int row = 0; row < ROWS; row++)");
