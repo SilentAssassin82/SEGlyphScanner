@@ -34,19 +34,29 @@ namespace SEGlyphScanner
         // E001–E04F: HUD / chevron icons in White font (forcewhite, aw ≈ 60–64)
         // E050–E058: smaller arrow glyphs also present in Monospace font
 
-        // ── Inline colour tags (all fonts) ───────────────────────────────────────
-        // SE LCD renderer supports <color=R,G,B> markup inline in text strings.
-        // The tag applies from its position forward until the next tag.
-        // Works on both White and Monospace fonts; tintable glyphs pick up the active tag colour.
-        // To restore the LCD's FontColor, emit Tag(lcd.FontColor.R, lcd.FontColor.G, lcd.FontColor.B).
+        // ── Inline colour tags ────────────────────────────────────────────────────
+        // CONFIRMED: <color=R,G,B> inline tags are NOT supported by vanilla SE text panels.
+        // They only worked in earlier testing because AutoLCD 2 was active and processing
+        // them in its own pipeline — not the game's renderer.
+        //
+        // Vanilla SE colour options:
+        //   lcd.FontColor          — whole panel, single colour
+        //   ColorSwatch/ColorBar   — baked-RGBA blocks (Monospace only)
+        //   E034–E048              — pre-coloured status arrows (fixed colours)
+        //   ContentType.SCRIPT     — full sprite draw API, arbitrary colours per element
+        //
+        // Tag() and TagWhite are kept here for reference / AutoLCD 2 contexts only.
 
-        /// <summary>Returns an inline colour tag string: <c>&lt;color=R,G,B&gt;</c>.</summary>
+        /// <summary>
+        /// Returns a <c>&lt;color=R,G,B&gt;</c> string. Not supported by vanilla SE text panels.
+        /// Only functional inside AutoLCD 2's template pipeline.
+        /// </summary>
         public static string Tag(byte r, byte g, byte b)
         {
             return "<color=" + r + "," + g + "," + b + ">";
         }
 
-        /// <summary>Resets inline colour to white (255,255,255).</summary>
+        /// <summary>Colour reset tag (255,255,255). AutoLCD 2 pipeline only — not vanilla SE.</summary>
         public const string TagWhite = "<color=255,255,255>";
 
         // ── Universal spacers (all fonts) ────────────────────────────────────────

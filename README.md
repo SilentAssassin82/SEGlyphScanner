@@ -54,7 +54,7 @@ Systematic in-game browsing revealed that several glyphs in the Monospace font a
 - `TagWhite` — inline colour reset constant (255,255,255)
 - `IdeographicSpace` (U+3000) — full-width CJK space that works in both White and Monospace fonts
 
-> **Note on colour tags:** `<color=R,G,B>` tags work when writing directly to `IMyTextPanel` from your own plugin or PB. They do not work inside AutoLCD 2's template pipeline. Tags apply per-line — re-emit at the start of each line if you need the colour to continue across newlines.
+> **Note on colour tags:** `<color=R,G,B>` inline tags are **not supported by vanilla SE text panels**. They appeared to work in earlier testing only because AutoLCD 2 was running and processing them in its own pipeline. In vanilla SE (PB or Torch plugin writing directly to `IMyTextPanel`), colour control is limited to `lcd.FontColor` (whole panel, single colour), baked-RGBA swatch glyphs, or `ContentType.SCRIPT` sprite drawing.
 
 ## In-game glyph browser
 
