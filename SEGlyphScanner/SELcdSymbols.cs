@@ -13,7 +13,7 @@ namespace SEGlyphScanner
     ///
     /// CRITICAL — E050 / E051 / E052 render DIFFERENTLY depending on font:
     ///   White font    : E050 = PS S1– stick icon   E051 = PS S2– icon   E052 = PS S3– icon
-    ///   Monospace font: E050 = triple chevron <<<   E051 = double chevron <<   E052 = single chevron <
+    ///   Monospace font: E050 = left chevron <   E051 = left chevron variant   E052 = left chevron variant
     ///   → DrainIcon / FillIcon MUST be used on a Monospace-font surface to appear as chevrons.
     ///   → On a White-font surface they will render as PlayStation stick deflection icons.
     ///
@@ -28,8 +28,8 @@ namespace SEGlyphScanner
     {
         // ── Confirmed arrows / indicators (White font, forcewhite → tintable) ────
         // In-game confirmed via screenshots:
-        public const char DrainIcon = '\uE050';   // <<<  triple left chevron
-        public const char FillIcon  = '\uE051';   // <<   double left chevron
+        public const char DrainIcon = '\uE050';   // <  left chevron
+        public const char FillIcon  = '\uE051';   // <  left chevron variant
 
         // E001–E04F: HUD / chevron icons in White font (forcewhite, aw ≈ 60–64)
         // E050–E058: smaller arrow glyphs also present in Monospace font
